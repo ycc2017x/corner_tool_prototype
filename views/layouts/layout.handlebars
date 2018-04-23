@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Your Corner Tool</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link type="text/css" href="/css/index.css" rel="stylesheet" />
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/6b437719c8.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+   <!-- <div class="container"> -->
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    {{#if user}}
+                    <!--<li role="presentation"><a href="/">Dashboard</a></li>-->
+                    <li id="tutorial_button" class="nav_tip" role="presentation"><a href="#">Tutorial</a><span class="tooltiptext">Click to view tutorial message</span></li>
+                     <li id="user_portal" class="nav_tip" role="presentation"><a href="">{{name}}</a><span class="tooltiptext">In a future version this link will redirect to a user's portal where they can access all of their grids and view/download reports.</span></li>
+                    <li role="presentation"><a href="http://yourcornerconsulting.com/feedback/">Click Here to Leave Feedback</a></li>
+                    <li role="presentation"><a href="/users/logout">Logout</a></li>
+                   
+                    {{/if}}
+                </ul>
+            </nav>
+            <h3 class="text-muted"><img id="company_logo" src="/images/CAT_MI.png" /></h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                {{#if success_msg}}
+                <div class="alert alert-success">{{success_msg}}</div>
+                {{/if}} {{#if error_msg}}
+                <div class="alert alert-danger">{{error_msg}}</div>
+                {{/if}} {{#if error}}
+                <div class="alert alert-danger">{{error}}</div>
+                {{/if}} {{{body}}}
+            </div>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2017 Your Corner Consulting, LLC</p>
+            <script src="js/index.js"></script>
+            <script type="text/javascript" src="js/autocomplete.js"></script>
+            <script src="js/B_D.js"></script>
+            <script src="js/D_S.js"></script>
+            <script src="js/E_A.js"></script>
+            <script src="js/G_D.js"></script>
+            <script src="js/I_D.js"></script>
+            <script src="js/L_D.js"></script>
+            <script src="js/P_M.js"></script>
+            <script src="js/Q_A.js"></script>
+            <script src="js/S_D.js"></script>
+        </footer>
+   <!-- </div> -->
+    <!-- /container -->
+</body>
+
+</html>

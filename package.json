@@ -1,0 +1,25 @@
+{
+  "name": "yourCornerTool",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/rileymiller/corner_tool",
+  "author": "Riley Miller <rmllr000@gmail.com>",
+  "license": "none",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "nodemailer": "*",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.1",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
+  }
+}
