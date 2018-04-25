@@ -51,7 +51,7 @@ export default class Grid extends Component {
         const node = this.Container;
         const masterNode = document.getElementById('applicationRoot');
         const mainNav = document.getElementById('mainNav');
-        const maxHeight = masterNode.clientHeight - mainNav.clientHeight - 20;
+        const maxHeight = masterNode.clientHeight - mainNav.clientHeight - 30;
 
         let gridWidth = node.clientWidth;
         let gridHeight = node.clientWidth;

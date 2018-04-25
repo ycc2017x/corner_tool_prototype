@@ -1,0 +1,16 @@
+#ListContainer {
+
+    .sortableListViewContainer {
+        height: calc(100% - 60px);
+        overflow: hidden;
+        overflow-y: auto;
+
+        .list-group-item {
+            cursor: ns-resize;
+        }
+    }
+
+    .panel-header {
+        cursor: pointer;
+    }
+}

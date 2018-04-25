@@ -1,0 +1,59 @@
+#GridContainer {
+    position: relative;
+    height: 100%;
+    width: calc(100% - 20px);
+    border: 1px solid black;
+    margin-bottom: 20px;
+
+    .gridLine {
+        position: absolute;
+        background: black;
+        width: 1px;
+        left: 50%;
+        height: 100%;
+    }
+
+    .gridLineX {
+        left: 0;
+        top: 50%;
+        height: 1px;
+        width: 100%;
+    }
+
+    .draggablePoint {
+        background: rgba(0,0,0,0.8);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: white;
+        text-align: center;
+        cursor: move;
+    }
+
+    .legendY {
+        width: 100%;
+        position: absolute;
+        right: -50%;
+        margin-right: -15px;
+        top: 50%;
+        transform: rotate(90deg);
+
+        div {
+            float: left;
+            width: 50%;
+            text-align: center;
+        }
+    }
+
+    .legendX {
+        width: 100%;
+        position: absolute;
+        bottom: -25px;
+
+        div {
+            float: left;
+            width: 50%;
+            text-align: center;
+        }
+    }
+}

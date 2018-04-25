@@ -29,3 +29,8 @@ export function translatePointToData(width, x) {
 
     return val >= 100 ? 100 : val;
 }
+export function matchStateToTerm(state, value) {
+    return (
+        state.label.toLowerCase().indexOf(value.toLowerCase()) !== -1
+    )
+}

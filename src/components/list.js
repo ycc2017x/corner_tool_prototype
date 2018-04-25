@@ -3,11 +3,16 @@ import SortableListView from 'components/sortablelistview'
 
 class ListItem extends Component {
     render() {
-        const { id, rank, description } = this.props.data;
+        const { id, rank, description, category, priority, skill } = this.props.data;
+        const { deletePoint } = this.props.actions;
         
         return (
             <div className="list-group-item">
-                {(rank + 1) + ': ' + description}
+                {(rank + 1) + ': ' + category.title + ' - ' + skill}
+
+                <button className="btn btn-danger btn-sm pull-right" onClick={deletePoint.bind(null, rank)}>
+                    <i className="fa fa-trash" />
+                </button>
             </div>
         )
     }
@@ -52,9 +57,9 @@ export default class List extends Component {
 
         return (
             <div id="ListContainer" style={{ height: containerHeight }} className="listContainer list-group">
-                <div className="list-group-item list-group-item-primary">
+                <div className="list-group-item list-group-item-primary panel-header" onClick={addPoint}>
                     SKILLS
-                    <button className="btn btn-sm btn-default pull-right" onClick={addPoint}><i className="fa fa-plus" /></button>
+                    <button className="btn btn-sm btn-default pull-right"><i className="fa fa-plus" /></button>
                 </div>
 
                 <SortableListView

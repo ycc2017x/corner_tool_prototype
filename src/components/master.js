@@ -9,12 +9,14 @@ import 'font-awesome/css/font-awesome.min.css';
 import Grid from 'components/grid'
 import Header from 'components/header'
 import List from 'components/list'
+import AddItem from 'components/additem'
 
 export default class Master extends Component {
     constructor() {
         super();
 
         this.state = {
+            addItem: null,
             points: [
                 new Point({ x: 50, y: 50, rank: 0 }),
                 new Point({ x: 75, y: 25, rank: 1 }),
@@ -38,7 +40,31 @@ export default class Master extends Component {
                 self.setState(self.state.points);
             },
             addPoint() {
-                self.state.points.push(new Point({ x: 50, y: 50, rank: self.state.points.length }));
+                self.setState({ addItem: {} });
+            },
+            deletePoint(ind) {
+                const point = self.state.points[ind];
+
+                if(point) {
+                    let c = confirm('Are you sure you want to delete this point?');
+
+                    if(c) {
+                        self.state.points.splice(ind, 1);
+                        self.state.points.map((p, i) => {
+                            p.rank = i;
+                        })
+                        self.setState(self.state);
+                        self.actions().savePoints();
+                    }
+                }
+            },
+            submitPoint(point) {
+                if(point) {
+                    self.state.points.push(new Point(Object.assign(point, { x: 50, y: 50, rank: self.state.points.length })));
+                    self.actions().savePoints();
+                }
+                
+                self.state.addItem = null;
                 self.setState(self.state);
             },
             savePoints() {
@@ -64,7 +90,7 @@ export default class Master extends Component {
         }
     }
     render() {
-        const { points } = this.state;
+        const { points, addItem } = this.state;
         const actions = this.actions.call(this);
         window.POINTS = this.state.points;
 
@@ -84,6 +110,8 @@ export default class Master extends Component {
                         </div>
                     </div>
                 </div>
+
+                {addItem && <AddItem {...this.state} actions={actions} />}
 
             </div>
         )
