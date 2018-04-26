@@ -41,8 +41,8 @@ export default class Master extends Component {
                 })
                 self.setState(self.state.points);
             },
-            addPoint() {
-                self.setState({ addItem: {} });
+            addPoint(point) {
+                self.setState({ addItem: point || {} });
             },
             startMove(ind) {
                 self.state.points[ind].isMoving = true;
@@ -66,8 +66,13 @@ export default class Master extends Component {
             },
             submitPoint(point) {
                 if(point) {
-                    self.state.points.push(new Point(Object.assign(point, { x: 50, y: 50, rank: self.state.points.length })));
-                    self.actions().savePoints();
+                    if(point.rank !== undefined) { //point already exists so we are just updating it
+                        self.state.points[point.rank] = point;
+                        self.actions().savePoints();
+                    } else {
+                        self.state.points.push(new Point(Object.assign(point, { x: 50, y: 50, rank: self.state.points.length })));
+                        self.actions().savePoints();
+                    }
                 }
                 
                 self.state.addItem = null;

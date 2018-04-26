@@ -34,6 +34,8 @@
     margin-bottom: 40px;
     border-radius: 4px;
     box-shadow: inset 4px 4px 0px #555555, inset -4px -4px 0px #555555;
+    background-image: url('../assets/gridbg.jpg');
+    background-size: cover;
 
     .gridLine {
         position: absolute;

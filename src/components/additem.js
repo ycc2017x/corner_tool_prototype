@@ -111,6 +111,33 @@ export default class AddItem extends Component {
             ],
             yoe: 1
         }
+
+        if(this.state.addItem.rank !== undefined) { //is edit so fill out items
+            const state = this.state;
+            const item = state.addItem;
+
+            //find category
+            for(var i = 0; i < state.categories.length; i++) {
+                let c = state.categories[i];
+                if(c.value === item.category.value) {
+                    state.selectedCategory = i;
+                    break;
+                }
+            }
+
+            //find priority
+            for(var i = 0; i < state.priorities.length; i++) {
+                let p = state.priorities[i];
+                if(p.value === item.priority.value) {
+                    state.selectedPriority = i;
+                    break;
+                }
+            }
+
+            state.skill = item.skill;
+            state.description = item.description;
+            state.yoe = item.yoe;
+        }
     }
     selectCat(e) {
         this.setState({ selectedCategory: e.target.selectedIndex });
@@ -130,13 +157,13 @@ export default class AddItem extends Component {
             return alert('Please select a Category');
         }
         
-        const point = {
+        const point = Object.assign(state.addItem, {
             description: state.description,
             category: state.categories[state.selectedCategory],
             priority: state.priorities[state.selectedPriority],
             skill: state.skill,
             yoe: state.yoe
-        }
+        })
 
         this.props.actions.submitPoint(point);
     }

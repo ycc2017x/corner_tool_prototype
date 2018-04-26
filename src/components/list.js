@@ -4,10 +4,10 @@ import SortableListView from 'components/sortablelistview'
 class ListItem extends Component {
     render() {
         const { id, rank, description, category, priority, skill, isMoving } = this.props.data;
-        const { deletePoint } = this.props.actions;
+        const { deletePoint, addPoint } = this.props.actions;
         
         return (
-            <div className={"list-group-item skillItem " + (isMoving ? 'isMoving' : '')}>
+            <div onClick={addPoint.bind(null, this.props.data)} className={"list-group-item skillItem " + (isMoving ? 'isMoving' : '')}>
                 {'Skill ' + (rank + 1) + ': ' + category.title}
 
                 <button className="btn btn-danger btn-sm pull-right" onClick={deletePoint.bind(null, rank)}>
