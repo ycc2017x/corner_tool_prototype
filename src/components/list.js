@@ -3,12 +3,12 @@ import SortableListView from 'components/sortablelistview'
 
 class ListItem extends Component {
     render() {
-        const { id, rank, description, category, priority, skill } = this.props.data;
+        const { id, rank, description, category, priority, skill, isMoving } = this.props.data;
         const { deletePoint } = this.props.actions;
         
         return (
-            <div className="list-group-item">
-                {(rank + 1) + ': ' + category.title + ' - ' + skill}
+            <div className={"list-group-item skillItem " + (isMoving ? 'isMoving' : '')}>
+                {'Skill ' + (rank + 1) + ': ' + category.title}
 
                 <button className="btn btn-danger btn-sm pull-right" onClick={deletePoint.bind(null, rank)}>
                     <i className="fa fa-trash" />
@@ -52,13 +52,18 @@ export default class List extends Component {
     }
     render() {
         const { containerHeight } = this.state;
-        const { addPoint, updateRank } = this.props.actions;
+        const { addPoint, updateRank, startMove } = this.props.actions;
         const { rows, rowsOrder } = this.calcRows.call(this);
 
         return (
             <div id="ListContainer" style={{ height: containerHeight }} className="listContainer list-group">
                 <div className="list-group-item list-group-item-primary panel-header" onClick={addPoint}>
-                    SKILLS
+                    <div className="rivet topLeft" />
+                    <div className="rivet topRight" />
+                    <div className="rivet bottomRight" />
+                    <div className="rivet bottomLeft" />
+
+                    <h1>Skills</h1>
                     <button className="btn btn-sm btn-default pull-right"><i className="fa fa-plus" /></button>
                 </div>
 
@@ -66,6 +71,7 @@ export default class List extends Component {
                     data={rows}
                     order={rowsOrder}
                     onRowMoved={updateRank}
+                    onSortStart={({ index }) => { startMove(index) }}
                     renderRow={row => <ListItem key={row.rank} {...this.props} data={row} />} />
             </div>
         )

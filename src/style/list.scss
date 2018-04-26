@@ -1,16 +1,80 @@
+.skillItem.list-group-item,
+#ListContainer .sortableListViewContainer .skillItem.list-group-item.isMoving {
+    cursor: ns-resize;
+    background: $yellow-light;
+    border: 2px solid #fff982;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.8), inset 3px 3px 10px rgba(0,0,0,0.2);
+    border-radius: 0 !important;
+    color: black;
+    margin-bottom: 5px;
+
+    .btn {
+        margin: -3px -10px 0 0;
+    }
+}
+
 #ListContainer {
 
     .sortableListViewContainer {
         height: calc(100% - 60px);
+        width: 101%;
         overflow: hidden;
         overflow-y: auto;
 
-        .list-group-item {
-            cursor: ns-resize;
+        .skillItem.list-group-item {
+            color: white;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+            background: linear-gradient(0deg, #3a2666, #492793);
+            border: 2px solid #6a6080;
         }
     }
 
     .panel-header {
         cursor: pointer;
+        background: linear-gradient(0deg, #010203, $purple-dark);
+        border: 2px solid #6a6080;
+        border-radius: 5px 5px 0 0;
+        color: white;
+        padding: 0;
+        margin-bottom: 10px;
+
+        h1 {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .btn {
+            position: absolute;
+            right: 25px;
+            top: 8px;
+            background: $yellow-light;
+            color: black;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.8), inset 3px 3px 10px rgba(0,0,0,0.2);
+        }
+    }
+
+    .rivet {
+        background: #7c7c7c83;
+        
+        &.topLeft {
+            top: 5px;
+            left: 5px;
+        }
+
+        &.bottomLeft {
+            bottom: 5px;
+            left: 5px;
+        }
+
+        &.bottomRight {
+            bottom: 5px;
+            right: 5px;
+        }
+
+        &.topRight {
+            top: 5px;
+            right: 5px;
+        }
     }
 }

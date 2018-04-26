@@ -15,7 +15,8 @@ export default class Grid extends Component {
         }
     }
     onDragStart(ind, e, t) {
-        // console.log('start', ind, e, t)
+        const { actions } = this.props;
+        actions.startMove(ind);
     }
     onDrag(ind, e, t) {
         // console.log('drag', e.target, t)
@@ -51,7 +52,7 @@ export default class Grid extends Component {
         const node = this.Container;
         const masterNode = document.getElementById('applicationRoot');
         const mainNav = document.getElementById('mainNav');
-        const maxHeight = masterNode.clientHeight - mainNav.clientHeight - 30;
+        const maxHeight = masterNode.clientHeight - mainNav.clientHeight - 60;
 
         let gridWidth = node.clientWidth;
         let gridHeight = node.clientWidth;
@@ -82,6 +83,11 @@ export default class Grid extends Component {
             <div id={"GridContainer"} ref={comp => this.Container = comp} style={{ height, width: state.forceWidth ? state.gridWidth : undefined }} className="gridContainer">
                 <div className="gridLine gridLineY" />
                 <div className="gridLine gridLineX" />
+
+                <div className="rivet topLeft" />
+                <div className="rivet topRight" />
+                <div className="rivet bottomRight" />
+                <div className="rivet bottomLeft" />
 
                 <div className="legend legendX">
                     <div>Don't Like</div>

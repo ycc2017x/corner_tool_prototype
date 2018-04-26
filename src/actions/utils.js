@@ -19,7 +19,7 @@ export function guid() {
 }
 export function translatePointToGrid(width, x) {
     let mult = x / 100;
-    let val = (width * mult) - 15;
+    let val = (width * mult) - 17.5;
 
     return val >= width ? width : val;
 }

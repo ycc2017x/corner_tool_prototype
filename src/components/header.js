@@ -5,11 +5,13 @@ export default class Header extends Component {
         const { actions } = this.props;
 
         return (
-            <div id="mainNav" className="navbar navbar-expand-lg">
+            <div id="mainNav" className="navbar navbar-fixed-top">
                 <a className="navbar-brand" href="">Your Corner Consulting</a>
 
-                <button onClick={actions.savePoints} className="btn btn-sm btn-success pull-right"><i className="fa fa-save" /></button>
-                <button onClick={actions.clearPoints} className="btn btn-sm btn-danger pull-right"><i className="fa fa-trash" /></button>
+                <div className="pull-right buttonContainer">
+                    {/* <button onClick={actions.savePoints} className="btn btn-sm btn-success pull-right"><i className="fa fa-save" /></button> */}
+                    <button onClick={actions.clearPoints} className="btn btn-sm btn-danger"><i className="fa fa-trash" /> Clear Points</button>
+                </div>
             </div>
         )
     }

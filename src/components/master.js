@@ -30,9 +30,11 @@ export default class Master extends Component {
                 const point = self.state.points[rank];
                 point.x = x;
                 point.y = y;
+                self.state.points[rank].isMoving = undefined;
                 self.setState(self.state.points, self.actions().savePoints);
             },
             updateRank(e){
+                self.state.points[e.from].isMoving = false;
                 self.state.points.splice(e.to, 0, self.state.points.splice(e.from, 1)[0]);
                 self.state.points.map((p, i) => {
                     p.rank = i;
@@ -41,6 +43,10 @@ export default class Master extends Component {
             },
             addPoint() {
                 self.setState({ addItem: {} });
+            },
+            startMove(ind) {
+                self.state.points[ind].isMoving = true;
+                self.setState(self.state);
             },
             deletePoint(ind) {
                 const point = self.state.points[ind];
@@ -72,8 +78,12 @@ export default class Master extends Component {
                 localStorage.yccPoints = string;
             },
             clearPoints() {
-                delete localStorage.yccPoints;
-                self.setState({ points: [] });
+                let c = confirm('Are you sure you want to delete all points?');
+
+                if(c) {
+                    delete localStorage.yccPoints;
+                    self.setState({ points: [] });
+                }
             }
         }
     }
@@ -101,7 +111,7 @@ export default class Master extends Component {
 
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-8">
+                        <div className="col-md-8 overflowHidden">
                             <Grid actions={actions} points={points} />
                         </div>
 

@@ -14,17 +14,17 @@ export default class Point extends Component {
     }
     render() {
         const state = this.state;
-        const { x, y, id, translateX, translateY } = this.props;
+        const { x, y, id, translateX, translateY, isMoving } = this.props;
 
         return (
             <Draggable
                 defaultPosition={{ x, y }}
                 position={{ x, y }}
                 bounds={this.props.bounds}
-                onStart={this.props.onDragStart}
+                onStart={this.props.onStart}
                 onDrag={this.props.onDrag}
                 onStop={this.props.onStop}>
-                    <div onClick={this.toggleOpen.bind(this)} id={id} className="draggablePoint">{(this.props.rank + 1)}</div>
+                    <div onClick={this.toggleOpen.bind(this)} id={id} className={"draggablePoint " + (isMoving ? 'react-draggable-dragging' : '')}>{(this.props.rank + 1)}</div>
             </Draggable>
         )
     }

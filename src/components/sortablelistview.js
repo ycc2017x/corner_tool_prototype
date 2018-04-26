@@ -60,7 +60,7 @@ class SortableListView extends Component {
         return (
             <div className="sortableListViewContainer" ref={"scrollContainer"} style={[props.style, { flexDirection: 'column', flex: 1, overflowX: 'hidden' }]}>
 
-                <SortableList items={rows} onSortEnd={actions.onSortEnd} lockAxis={"y"} pressDelay={300} data={props.data} rowHasChanged={props.rowHasChanged} render={props.renderRow} />
+                <SortableList items={rows} onSortStart={props.onSortStart} onSortEnd={actions.onSortEnd} lockAxis={"y"} pressDelay={300} data={props.data} rowHasChanged={props.rowHasChanged} render={props.renderRow} />
 
             </div>
         )
