@@ -23,7 +23,7 @@ module.exports = function (env) {
             output: {
                 filename: '[name].entry.js',
                 path: path.join(__dirname, "docs", "dist", "js"),
-                publicPath: "/dist/js/"
+                publicPath: ""
             },
             devtool: !isLocal && (isProd || isStage) && !isDev ? false : 'source-map', //turn off on prod
             resolve: {
