@@ -72,6 +72,18 @@
             border: 3px solid #fff982;
             box-shadow: 4px 4px 10px rgba(0,0,0,0.8), inset 3px 3px 10px rgba(0,0,0,0.2);
         }
+
+        &.isGroup_0 {
+            background: green;
+        }
+
+        &.isGroup_1 {
+            background: blue;
+        }
+
+        &.isGroup_2 {
+            background: red;
+        }
     }
 
     .legend {

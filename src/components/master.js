@@ -9,6 +9,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import Grid from 'components/grid'
 import Header from 'components/header'
 import List from 'components/list'
+import SnapList from 'components/snaplist'
 import AddItem from 'components/additem'
 
 export default class Master extends Component {
@@ -17,6 +18,8 @@ export default class Master extends Component {
 
         this.state = {
             addItem: null,
+            showSnaps: false,
+            snaps: [],
             points: [
                 new Point({ x: 50, y: 50, rank: 0 }),
                 new Point({ x: 75, y: 25, rank: 1 }),
@@ -88,13 +91,34 @@ export default class Master extends Component {
                 const string = JSON.stringify(self.state.points);
                 localStorage.yccPoints = string;
             },
-            clearPoints() {
-                let c = confirm('Are you sure you want to delete all points?');
+            clearPoints(dontAsk) {
+                let c = dontAsk === true ? true : confirm('Are you sure you want to delete all points?');
 
                 if(c) {
                     delete localStorage.yccPoints;
                     self.setState({ points: [] });
                 }
+            },
+            createSnapShot() {
+                const snaps = JSON.parse(localStorage.yccSnaps || '[]');
+                const points = self.state.points;
+
+                snaps.push({
+                    date: new Date(),
+                    points: points
+                })
+
+                localStorage.yccSnaps = JSON.stringify(snaps);
+                self.setState({ snaps });
+                self.actions().clearPoints(true);
+            },
+            toggleSnapShot(e) {
+                if (e) {
+                    e.preventDefault && e.preventDefault();
+                    e.stopPropagation && e.stopPropagation();
+                }
+
+                self.setState({ showSnaps: !self.state.showSnaps });
             }
         }
     }
@@ -109,11 +133,17 @@ export default class Master extends Component {
 
             this.setState({ points });
         }
+
+        if (localStorage && localStorage.yccSnaps) {
+            const snaps = JSON.parse(localStorage.yccSnaps);
+            this.setState({ snaps });
+        }
     }
     render() {
-        const { points, addItem } = this.state;
+        const state = this.state;
+        const { points, addItem, snaps } = state;
         const actions = this.actions.call(this);
-        window.POINTS = this.state.points;
+        window.MAINSTATE = this.state;
 
         return (
             <div className="masterContainer">
@@ -123,11 +153,12 @@ export default class Master extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-8 overflowHiddenY">
-                            <Grid actions={actions} points={points} />
+                            <Grid actions={actions} {...state} />
                         </div>
 
                         <div className="col-md-4">
-                            <List actions={actions} points={points} />
+                            {!state.showSnaps && <List actions={actions} {...state} />}
+                            {state.showSnaps && <SnapList actions={actions} {...state} />}
                         </div>
                     </div>
                 </div>

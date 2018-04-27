@@ -3,16 +3,12 @@ import SortableListView from 'components/sortablelistview'
 
 class ListItem extends Component {
     render() {
-        const { id, rank, description, category, priority, skill, isMoving } = this.props.data;
+        const { date, points } = this.props.data;
         const { deletePoint, addPoint } = this.props.actions;
-        
-        return (
-            <div onClick={addPoint.bind(null, this.props.data)} className={"list-group-item skillItem " + (isMoving ? 'isMoving' : '')}>
-                {'Skill ' + (rank + 1) + ': ' + category.title}
 
-                <button className="btn btn-danger btn-sm pull-right" onClick={deletePoint.bind(null, rank)}>
-                    <i className="fa fa-trash" />
-                </button>
+        return (
+            <div className={"list-group-item skillItem snapShotItem"}>
+                {'Snapshot Date - ' + (date) + ': '}
             </div>
         )
     }
@@ -30,9 +26,9 @@ export default class List extends Component {
         let rows = {};
         let rowsOrder = [];
 
-        this.props.points.map((p, i) => {
-            let rid = p.id.toString();
-            if(!rows[rid]) {
+        this.props.snaps.map((p, i) => {
+            let rid = p.date.toString();
+            if (!rows[rid]) {
                 rows[rid] = p;
                 rowsOrder.push(rid);
             }
@@ -52,24 +48,25 @@ export default class List extends Component {
     }
     render() {
         const { containerHeight } = this.state;
-        const { addPoint, updateRank, startMove, toggleSnapShot } = this.props.actions;
+        const { addPoint, updateRank, startMove, toggleSnapShot, createSnapShot } = this.props.actions;
         const { rows, rowsOrder } = this.calcRows.call(this);
 
         return (
             <div id="ListContainer" style={{ height: containerHeight }} className="listContainer list-group">
-                <div className="list-group-item list-group-item-primary panel-header" onClick={addPoint.bind(null, null)}>
+                <div className="list-group-item list-group-item-primary panel-header">
                     <div className="rivet topLeft" />
                     <div className="rivet topRight" />
                     <div className="rivet bottomRight" />
                     <div className="rivet bottomLeft" />
 
-                    <h1>Skills</h1>
-                    <button className="btn btn-sm btn-default pull-right"><i className="fa fa-plus" /></button>
-                    <button onClick={toggleSnapShot} className="btn btn-sm btn-default pull-left toggleSnap"><i className="fa fa-camera" /></button>                    
+                    <h1>SnapShots</h1>
+                    <button onClick={createSnapShot} className="btn btn-sm btn-default pull-right"><i className="fa fa-plus" /></button>                    
+                    <button onClick={toggleSnapShot} className="btn btn-sm btn-default pull-left toggleSnap"><i className="fa fa-camera" /></button>
                 </div>
 
                 <SortableListView
                     data={rows}
+                    shouldCancelStart={() => true}
                     order={rowsOrder}
                     onRowMoved={updateRank}
                     onSortStart={({ index }) => { startMove(index) }}

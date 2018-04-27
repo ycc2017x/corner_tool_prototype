@@ -9,7 +9,6 @@ export default class Header extends Component {
                 <a className="navbar-brand" href="">Your Corner Consulting</a>
 
                 <div className="pull-right buttonContainer">
-                    {/* <button onClick={actions.savePoints} className="btn btn-sm btn-success pull-right"><i className="fa fa-save" /></button> */}
                     <button onClick={actions.clearPoints} className="btn btn-sm btn-danger"><i className="fa fa-trash" /> Clear Points</button>
                 </div>
             </div>

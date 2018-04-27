@@ -4,6 +4,8 @@ import { translatePointToGrid, translatePointToData } from "actions/utils";
 
 import Point from 'components/point'
 
+const noop = () => {}
+
 export default class Grid extends Component {
     constructor(props) {
         super(props);
@@ -31,15 +33,27 @@ export default class Grid extends Component {
         }
     }
     buildPoints() {
+        const { points, snaps, showSnaps } = this.props;
         const displayPoints = [];
-        const points = this.props.points.slice(0);
+        let _points = this.props.points.slice(0);
+        
+        if(showSnaps) {
+            _points = [];
+            snaps.map((s, i) => {
+                s.points.map((p, _i) => {
+                    p.group = i;
+                    p.realRank = _i;
+                    _points.push(p);
+                })
+            })
+        }
 
-        points.map((_p, i) => {
+        _points.map((_p, i) => {
             let p = JSON.parse(JSON.stringify(_p));
-            p.onDrag = this.onDrag.bind(this, i);
-            p.onStart = this.onDragStart.bind(this, i);
-            p.onStop = this.onStop.bind(this, i);
-            p.rank = i;
+            p.onDrag = showSnaps ? noop : this.onDrag.bind(this, i);
+            p.onStart = showSnaps ? noop : this.onDragStart.bind(this, i);
+            p.onStop = showSnaps ? noop : this.onStop.bind(this, i);
+            p.rank = p.realRank !== undefined ? p.realRank : i;
             p.bounds = 'parent';
             p.x = translatePointToGrid(this.state.gridHeight, p.x);
             p.y = translatePointToGrid(this.state.gridHeight, p.y);
