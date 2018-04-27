@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Corner Tool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corner Tool</title>
+</head>
+
+<body>
+    <div id="applicationRoot"></div>
+    <script type="text/javascript">
+        var loc = window.location.href;
+        // if (loc.indexOf('localhost') === -1 && loc.indexOf('http:') === 0) { //force redirect to https
+        //     window.location.href = 'https:' + loc.substring(5, loc.length);
+        // }
+
+        function genAppendLoop(target) {
+            var targetEl = document.getElementsByTagName(target).item(0);
+            return function (src) {
+                if (!src) return
+                var script = document.createElement('script');
+                script.setAttribute('type', 'text/javascript');
+                script.setAttribute('charset', 'utf-8');
+                script.setAttribute('src', src);
+                script.async = false;
+                targetEl.appendChild(script);
+            }
+        }
+
+        if (loc.indexOf('localhost') > -1) {
+            [
+                window.location.protocol + "//localhost:8080/webpack-dev-server.js",
+                window.location.protocol + "//localhost:8080/dist/js/app.entry.js",
+                window.location.protocol + "//localhost:8080/dist/js/vendor.entry.js",
+            ].forEach(genAppendLoop("body"))
+        } else {
+            [
+                "dist/js/app.entry.js?v=1524344875749.91",
+                "dist/js/vendor.entry.js?v=1524344875749.91",
+            ].forEach(genAppendLoop("body"))
+        }
+    </script>
+</body>
+
+</html>
