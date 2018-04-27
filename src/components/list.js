@@ -57,7 +57,7 @@ export default class List extends Component {
 
         return (
             <div id="ListContainer" style={{ height: containerHeight }} className="listContainer list-group">
-                <div className="list-group-item list-group-item-primary panel-header" onClick={addPoint}>
+                <div className="list-group-item list-group-item-primary panel-header" onClick={addPoint.bind(null, null)}>
                     <div className="rivet topLeft" />
                     <div className="rivet topRight" />
                     <div className="rivet bottomRight" />

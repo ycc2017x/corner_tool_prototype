@@ -48,7 +48,12 @@ export default class Master extends Component {
                 self.state.points[ind].isMoving = true;
                 self.setState(self.state);
             },
-            deletePoint(ind) {
+            deletePoint(ind, e) {
+                if(e) {
+                    e.preventDefault && e.preventDefault();
+                    e.stopPropagation && e.stopPropagation();
+                }
+
                 const point = self.state.points[ind];
 
                 if(point) {
@@ -67,6 +72,7 @@ export default class Master extends Component {
             submitPoint(point) {
                 if(point) {
                     if(point.rank !== undefined) { //point already exists so we are just updating it
+                        delete point.addItem;
                         self.state.points[point.rank] = point;
                         self.actions().savePoints();
                     } else {
@@ -116,7 +122,7 @@ export default class Master extends Component {
 
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-md-8 overflowHidden">
+                        <div className="col-md-8 overflowHiddenY">
                             <Grid actions={actions} points={points} />
                         </div>
 

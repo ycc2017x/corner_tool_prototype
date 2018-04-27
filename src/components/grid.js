@@ -63,7 +63,7 @@ export default class Grid extends Component {
             gridHeight = maxHeight;
             forceWidth = true;
         }
-        this.setState({ gridWidth, gridHeight }, this.buildPoints.bind(this));
+        this.setState({ gridWidth, gridHeight, forceWidth }, this.buildPoints.bind(this));
     }
     componentDidMount() {
         setTimeout(this.makeSquare.bind(this), 10);
