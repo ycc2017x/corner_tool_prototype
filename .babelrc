@@ -1,0 +1,13 @@
+{
+	"presets": ["react"],
+	"plugins": [
+	    "transform-decorators-legacy",
+	    "transform-inline-environment-variables",
+		["module-alias", [
+			{ "src": "./src", "expose": "src" },
+			{ "src": "./src/style", "expose": "style" },
+			{ "src": "./src/components", "expose": "components" },
+			{ "src": "./src/actions", "expose": "actions" }			
+		]]
+	]
+}

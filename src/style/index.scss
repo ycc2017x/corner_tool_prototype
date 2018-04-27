@@ -1,0 +1,50 @@
+@import "vars.scss";
+@import "grid.scss";
+@import "list.scss";
+@import "additem.scss";
+
+#applicationRoot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    background: linear-gradient(0deg, #666665, black);
+
+    #mainNav {
+        background: $purple-dark;
+        margin-bottom: 10px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        
+        a {
+            color: white;
+        }
+    }
+
+    .masterContainer {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+.overflowHidden {
+    overflow: hidden;
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  box-shadow: 0 0 1px rgba(255,255,255,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
