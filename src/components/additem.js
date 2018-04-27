@@ -10,6 +10,7 @@ export default class AddItem extends Component {
             addItem: props.addItem,
             selectedCategory: null,
             categories: [
+                { value: "", title: "" },
                 { value: "I_D", title: "Instructional Design" },
                 { value: "S_D", title: "Software Development" },
                 { value: "P_M", title: "Project Management" },
@@ -191,7 +192,6 @@ export default class AddItem extends Component {
                                     <div className="form-group">
                                         <label htmlFor="catSelect">Category</label>
                                         <select onChange={this.selectCat.bind(this)} className="form-control" id="catSelect">
-                                            <option value=""></option>
                                             {categories.map((c, i) => {
                                                 return <option key={i} selected={state.selectedCategory === i} value={c.value}>{c.title}</option>
                                             })}
