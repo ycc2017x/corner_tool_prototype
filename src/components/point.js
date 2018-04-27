@@ -18,7 +18,7 @@ export default class Point extends Component {
 
         return (
             <Draggable
-                defaultPosition={{ x, y }}
+                // defaultPosition={{ x, y }}
                 position={{ x, y }}
                 bounds={this.props.bounds}
                 onStart={this.props.onStart}

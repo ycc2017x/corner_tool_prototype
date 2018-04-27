@@ -3,14 +3,15 @@ import React, { Component } from 'react'
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 
 const SortableItem = SortableElement((props) => {
-    return props.render(Object.assign({}, props.data))
+    return props.render(Object.assign({ }, props.data))
 });
 
 const SortableList = SortableContainer((props) => {
     return (
         <div>
             {props.items.map((value, index) => {
-                return <SortableItem key={`item-${index}`} index={index} data={props.data[value]} render={props.render} />
+                let obj = Object.assign({ index }, props.data[value]);
+                return <SortableItem key={`item-${index}`} index={index} data={obj} render={props.render} />
             })}
         </div>
     );

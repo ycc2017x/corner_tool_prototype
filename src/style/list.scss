@@ -28,6 +28,12 @@
 
             &.snapShotItem {
                 cursor: default;
+
+                .fa {
+                    cursor: pointer;
+                    margin-top: 3px;
+                    color: white;
+                }
             }
         }
     }

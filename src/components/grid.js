@@ -33,15 +33,15 @@ export default class Grid extends Component {
         }
     }
     buildPoints() {
-        const { points, snaps, showSnaps } = this.props;
+        const { points, snapsToCompare, showSnaps } = this.props;
         const displayPoints = [];
         let _points = this.props.points.slice(0);
         
         if(showSnaps) {
             _points = [];
-            snaps.map((s, i) => {
+            snapsToCompare.map((s, i) => {
                 s.points.map((p, _i) => {
-                    p.group = i;
+                    p.group = s.index;
                     p.realRank = _i;
                     _points.push(p);
                 })
@@ -57,7 +57,7 @@ export default class Grid extends Component {
             p.bounds = 'parent';
             p.x = translatePointToGrid(this.state.gridHeight, p.x);
             p.y = translatePointToGrid(this.state.gridHeight, p.y);
-            displayPoints.push((<Point key={i} {...p} />))
+            displayPoints.push((<Point key={_p.id} {...p} />))
         })
 
         return displayPoints;

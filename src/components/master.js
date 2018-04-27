@@ -20,6 +20,7 @@ export default class Master extends Component {
             addItem: null,
             showSnaps: false,
             snaps: [],
+            snapsToCompare: [],
             points: [
                 new Point({ x: 50, y: 50, rank: 0 }),
                 new Point({ x: 75, y: 25, rank: 1 }),
@@ -111,6 +112,35 @@ export default class Master extends Component {
                 localStorage.yccSnaps = JSON.stringify(snaps);
                 self.setState({ snaps });
                 self.actions().clearPoints(true);
+            },
+            clearSnapShots(dontAsk) {
+                let c = dontAsk === true ? true : confirm('Are you sure you want to delete all SnapShots?');
+
+                if (c) {
+                    delete localStorage.yccSnaps;;
+                    self.setState({ snaps: [], snapsToCompare: [] });
+                }
+            },
+            addSnapsToCompare(index) {
+                const snapsToCompare = self.state.snapsToCompare;
+                const snap = Object.assign({ index }, self.state.snaps[index]);
+                let alreadyIn;
+
+                for(var i = 0; i < snapsToCompare.length; i++) {
+                    let s = snapsToCompare[i];
+                    if(s.index === index) {
+                        alreadyIn = i;
+                        break;
+                    }
+                }
+
+                if(alreadyIn !== undefined) {
+                    snapsToCompare.splice(alreadyIn, 1);
+                } else {
+                    snapsToCompare.push(snap);
+                }
+
+                self.setState(self.state);
             },
             toggleSnapShot(e) {
                 if (e) {

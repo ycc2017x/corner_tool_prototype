@@ -2,13 +2,30 @@ import React, { Component } from 'react'
 import SortableListView from 'components/sortablelistview'
 
 class ListItem extends Component {
+    isSelected() {
+        const { snapsToCompare } = this.props;
+        const { index } = this.props.data;
+        let isSelected = false;
+
+        for(var i = 0; i < snapsToCompare.length; i++) {
+            if(snapsToCompare[i].index === index) {
+                isSelected = true;
+                break;
+            }
+        }
+
+        return isSelected;
+    }
     render() {
-        const { date, points } = this.props.data;
-        const { deletePoint, addPoint } = this.props.actions;
+        const { date, points, index } = this.props.data;
+        const { deletePoint, addPoint, addSnapsToCompare } = this.props.actions;
+        const isSelected = this.isSelected.call(this);
 
         return (
             <div className={"list-group-item skillItem snapShotItem"}>
                 {'Snapshot Date - ' + (date) + ': '}
+
+                <i onClick={addSnapsToCompare.bind(null, index)} className={isSelected ? "fa fa-check-square pull-right" : "fa fa-square pull-right"} />
             </div>
         )
     }
@@ -61,7 +78,7 @@ export default class List extends Component {
 
                     <h1>SnapShots</h1>
                     <button onClick={createSnapShot} className="btn btn-sm btn-default pull-right"><i className="fa fa-plus" /></button>                    
-                    <button onClick={toggleSnapShot} className="btn btn-sm btn-default pull-left toggleSnap"><i className="fa fa-camera" /></button>
+                    <button onClick={toggleSnapShot} className="btn btn-sm btn-default pull-left toggleSnap"><i className="fa fa-arrow-circle-left" /></button>
                 </div>
 
                 <SortableListView
@@ -69,7 +86,6 @@ export default class List extends Component {
                     shouldCancelStart={() => true}
                     order={rowsOrder}
                     onRowMoved={updateRank}
-                    onSortStart={({ index }) => { startMove(index) }}
                     renderRow={row => <ListItem key={row.rank} {...this.props} data={row} />} />
             </div>
         )
