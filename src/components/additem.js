@@ -110,12 +110,16 @@ export default class AddItem extends Component {
                 { label: "Alteryx" },
                 { label: "Server Knowledge" },
             ],
+            certified: false,
+            certText: '',
             yoe: 1
         }
 
         if(this.state.addItem.rank !== undefined) { //is edit so fill out items
-            const state = this.state;
+            let state = this.state;
             const item = state.addItem;
+
+            Object.assign(state, item);
 
             //find category
             for(var i = 0; i < state.categories.length; i++) {
@@ -163,7 +167,8 @@ export default class AddItem extends Component {
             category: state.categories[state.selectedCategory],
             priority: state.priorities[state.selectedPriority],
             skill: state.skill,
-            yoe: state.yoe
+            yoe: state.yoe,
+            ...state
         })
 
         this.props.actions.submitPoint(point);
@@ -229,6 +234,16 @@ export default class AddItem extends Component {
                                                 return <option key={i} selected={state.selectedPriority === i} value={c.value}>{c.title}</option>
                                             })}
                                         </select>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor={"certText"}>Certified?</label>
+                                        
+                                        <span className="checkbox" onClick={e => this.setState({ certified: !state.certified })}>
+                                            <i className={state.certified ? "fa fa-check-square" : 'fa fa-square'} />
+                                        </span>
+
+                                        {state.certified && <input className={"form-control"} type={"text"} id={"certText"} placeholder={"Enter certification information"} value={state.certText} onChange={e => this.setState({ certText: e.target.value })} />}
                                     </div>
 
                                     <div className="form-group">

@@ -38,6 +38,13 @@
     background-image: url('../assets/gridbg.jpg');
     background-size: cover;
 
+    .toggleFlippedX {
+        position: absolute;
+        bottom: -48px;
+        left: -15px;
+        cursor: pointer;
+    }
+
     .gridLine {
         position: absolute;
         background: linear-gradient(0deg, white, $purple-light, white);
@@ -75,46 +82,123 @@
 
         &.isGroup_0 {
             background: green;
+            color: white;
+
+            &.certified:before {
+                color: green;
+            }
         }
 
         &.isGroup_1 {
             background: blue;
+            color: white;
+
+            &.certified:before {
+                color: blue;
+            }
         }
 
         &.isGroup_2 {
             background: red;
+            color: white;
+
+            &.certified:before {
+                color: red;
+            }
         }
 
         &.isGroup_3 {
             background: purple;
+            color: white;
+
+            &.certified:before {
+                color: purple;
+            }
         }
         
         &.isGroup_4 {
             background: orange;
+            color: white;
+
+            &.certified:before {
+                color: orange;
+            }
         }
 
         &.isGroup_5 {
             background: white;
+
+            &.certified:before {
+                color: white;
+            }
         }
 
         &.isGroup_6 {
             background: brown;
+            color: white;
+
+            &.certified:before {
+                color: brown;
+            }
         }
 
         &.isGroup_7 {
             background: teal;
+            color: white;
+
+            &.certified:before {
+                color: teal;
+            }
         }
 
         &.isGroup_8 {
             background: yellow;
+
+            &.certified:before {
+                color: yellow;
+            }
         }
 
         &.isGroup_9 {
             background: yellowgreen;
+
+            &.certified:before {
+                color: yellowgreen;
+            }
         }
 
         &.isGroup_10 {
             background: blueviolet;
+            color: white;
+
+            &.certified:before {
+                color: blueviolet;
+            }
+        }
+
+        &.certified {
+            background: transparent;
+            border: 2px solid transparent;
+            box-shadow: none;
+
+            &:before {
+                font-family: 'FontAwesome';
+                content: "\f005";
+                font-size: 38px;
+                position: absolute;
+                top: -12px;
+                left: -2px;
+                z-index: -1;
+                color: #d4d5d6;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            }
+
+            &.react-draggable-dragging {
+                &:before {
+                    color: $yellow-light;
+                    text-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+                }
+            }
         }
     }
 

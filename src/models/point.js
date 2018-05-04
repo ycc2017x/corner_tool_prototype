@@ -2,7 +2,7 @@ import { guid } from 'actions/utils'
 
 export default class point {
     constructor(props) {
-        const { id, x, y, yoe, rank, category, description, company, targetId, sourceId, skill, priority } = props;
+        const { id, x, y, yoe, rank, category, description, company, targetId, sourceId, skill, priority, certified, certText } = props;
 
         this.id = id !== undefined ? id : this.id;
         this.x = x || this.x;
@@ -16,6 +16,8 @@ export default class point {
         this.sourceId = this.sourceId;
         this.skill = skill || this.skill
         this.priority = priority || this.priority;
+        this.certified = certified || this.certified;
+        this.certText = certText || this.certText;
     }
 
     id = guid();
@@ -30,4 +32,6 @@ export default class point {
     sourceId = 0;
     skill = '';
     priority = { title: 'High' }
+    certified = false;
+    certText = '';
 }

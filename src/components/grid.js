@@ -89,6 +89,7 @@ export default class Grid extends Component {
         };
     }
     render() {
+        const { flippedX, flippedY, actions } = this.props;
         const state = this.state;
         const height = state.gridHeight;
         const points = this.buildPoints.call(this);
@@ -103,15 +104,33 @@ export default class Grid extends Component {
                 <div className="rivet bottomRight" />
                 <div className="rivet bottomLeft" />
 
-                <div className="legend legendX">
-                    <div>Don't Like</div>
-                    <div>Like</div>
-                </div>
+                {flippedX ? (
+                    <div className="legend legendX">
+                        <div>Like</div>
+                        <div>Don't Like</div>
+                    </div>
+                ) : (
+                    <div className="legend legendX">
+                        <div>Don't Like</div>
+                        <div>Like</div>
+                    </div>
+                )}
 
-                <div className="legend legendY">
-                    <div>Good At</div>
-                    <div>Not Good At</div>
-                </div>
+                {flippedY ? (
+                    <div className="legend legendY">
+                        <div>Not Good At</div>
+                        <div>Good At</div>
+                    </div>
+                ) : (
+                    <div className="legend legendY">
+                        <div>Good At</div>
+                        <div>Not Good At</div>
+                    </div>
+                )}
+
+                <button onClick={actions.toggleFlip.bind(null, 'X')} className="toggleFlippedX btn-warning btn-xs">
+                    <i className={'fa fa-exchange'} />
+                </button>
 
                 {points}
             </div>

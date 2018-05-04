@@ -24,12 +24,19 @@ export default class Master extends Component {
             points: [
                 new Point({ x: 50, y: 50, rank: 0 }),
                 new Point({ x: 75, y: 25, rank: 1 }),
-            ]
+            ],
+            flippedX: false,
+            flippedY: false
         }
     }
     actions() {
         const self = this;
         return {
+            toggleFlip(xory){
+                self.state["flipped" + xory] = !self.state["flipped" + xory];
+                localStorage.yccFlipped = JSON.stringify({ flippedX: self.state.flippedX, flippedY: self.state.flippedY });
+                self.setState(self.state);
+            },
             updatePoint(rank, x, y) {
                 const point = self.state.points[rank];
                 point.x = x;
@@ -106,6 +113,8 @@ export default class Master extends Component {
 
                 snaps.push({
                     date: new Date(),
+                    flippedX: self.state.flippedX,
+                    flippedY: self.state.flippedY,
                     points: points
                 })
 
@@ -161,19 +170,28 @@ export default class Master extends Component {
                 points.push(new Point(p));
             })
 
-            this.setState({ points });
+            this.state.points = points;
         }
 
         if (localStorage && localStorage.yccSnaps) {
             const snaps = JSON.parse(localStorage.yccSnaps);
-            this.setState({ snaps });
+            this.state.snaps = snaps;
         }
+
+        if(localStorage && localStorage.yccFlipped) {
+            const flips = JSON.parse(localStorage.yccFlipped);
+            Object.assign(this.state, flips);
+        }
+
+        this.setState(this.state);
     }
     render() {
         const state = this.state;
         const { points, addItem, snaps } = state;
         const actions = this.actions.call(this);
+        
         window.MAINSTATE = this.state;
+        window.MASTERACTIONS = actions;
 
         return (
             <div className="masterContainer">
