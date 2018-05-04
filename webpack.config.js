@@ -127,34 +127,24 @@ module.exports = function (env) {
                 port: 8080
             }
         } else { //is build
-            // config.plugins.push(
-            //     !isLocal ? new webpack.DefinePlugin({
-            // 		'process.env': {
-            // 			NODE_ENV: JSON.stringify('production')
-            // 		}
-            // 	}) : new function() {}
-            // )
+            config.plugins.push(
+                !isLocal ? new webpack.DefinePlugin({
+            		'process.env': {
+            			NODE_ENV: JSON.stringify('production')
+            		}
+            	}) : new function() {}
+            )
 
-            //do our cache busting
-            // var replaceReg = /\?v=\d.\d+/gi;
-            // var appLoc = fp('server/src/views/app.html');
-            // var helloLoc = fp('server/src/views/index.html');
-            // var validLoc = fp('server/src/views/validation.html');
+            // do our cache busting
+            var replaceReg = /\?v=\d.\d+/gi;
+            var helloLoc = fp('docs/index.html');
 
-            // var ds = Date.now().toString();
+            var ds = Date.now().toString();
 
-            // var appFile = fs.readFileSync(appLoc, 'utf8').toString();
-            // appFile = appFile.replace(replaceReg, "?v=" + ds);
+            var helloFile = fs.readFileSync(helloLoc, 'utf8').toString();
+            helloFile = helloFile.replace(replaceReg, "?v=" + ds);
 
-            // var helloFile = fs.readFileSync(helloLoc, 'utf8').toString();
-            // helloFile = helloFile.replace(replaceReg, "?v=" + ds);
-
-            // var validFile = fs.readFileSync(validLoc, 'utf8').toString();
-            // validFile = validFile.replace(replaceReg, "?v=" + ds);
-
-            // fs.writeFile(appLoc, appFile);
-            // fs.writeFile(helloLoc, helloFile);
-            // fs.writeFile(validLoc, validFile);
+            fs.writeFile(helloLoc, helloFile);
         }
 
         return config;
