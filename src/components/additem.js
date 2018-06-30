@@ -31,89 +31,94 @@ export default class AddItem extends Component {
             description: '',
             skill: '',
             skillsAuto: [
-                { label: "Finding new leads" },
-                { label: "Speaking at events" },
-                { label: "Attending conferences/conventions" },
-                { label: "Developing current leads" },
-                { label: "Presenting Regis Capabilities" },
-                { label: "PowerPoint presentation" },
-                { label: "Writing proposals" },
-                { label: "Responding to RFPs" },
-                { label: "Facilitating meetings" },
-                { label: "Facilitating sessions" },
-                { label: "Business development support" },
-                { label: "Storyboarding simulations" },
-                { label: "HTML/CSS" },
-                { label: "Data visualization" },
-                { label: "Storyboarding videos" },
-                { label: "Motion graphic build" },
-                { label: "Brand/Logo design" },
-                { label: "Printed material design" },
-                { label: "User interface design" },
-                { label: "Photoshop" },
-                { label: "Illustrator" },
-                { label: "InDesign" },
-                { label: "Creative Writing" },
-                { label: "Camtasia" },
-                { label: "Project managing" },
-                { label: "Storyboarding" },
-                { label: "Technical Writing" },
-                { label: "Innovating" },
-                { label: "Facilitating" },
-                { label: "Researching" },
-                { label: "Wireframing" },
-                { label: "Captivate" },
-                { label: "Lectora" },
-                { label: "Mentoring others" },
-                { label: "Managing employees" },
-                { label: "Managing teams" },
-                { label: "Coaching" },
-                { label: "Financial analysis" },
-                { label: "Budget creation" },
-                { label: "Writing user stories" },
-                { label: "Evaluating stories" },
-                { label: "Reviewing/editing" },
-                { label: "Client communication (written)" },
-                { label: "Client communication (verbal)" },
-                { label: "Admin/logistics" },
-                { label: "Problem solving" },
-                { label: "Editorial QA" },
-                { label: "Data QA" },
-                { label: "Technical QA" },
-                { label: "Process QA" },
-                { label: "Functional QA" },
-                { label: "User Testing" },
-                { label: "Acceptance Criteria Reivew" },
-                { label: "Technical analysis" },
-                { label: "Process analysis" },
-                { label: "Financial QA" },
-                { label: "Java" },
-                { label: "Javascript" },
-                { label: "HTML" },
-                { label: ".NET" },
-                { label: "C#" },
-                { label: "SQL" },
-                { label: "C++" },
-                { label: "React" },
-                { label: "JIRA Administration" },
-                { label: "Accounts Payable" },
-                { label: "Accounts Receivable" },
-                { label: "Account Reconcilitation" },
-                { label: "Project Setup" },
-                { label: "Project Close-out" },
-                { label: "Interviewing" },
-                { label: "scoring models" },
-                { label: "Creating Facilitator Materials" },
-                { label: "writing assessment questions" },
-                { label: "working with SMEs" },
-                { label: "Tableau" },
-                { label: "Alteryx" },
-                { label: "Server Knowledge" },
+                { cat: "Business Development", label: "Finding new leads" },
+                { cat: "Business Development", label: "Speaking at events" },
+                { cat: "Business Development", label: "Attending conferences/conventions" },
+                { cat: "Business Development", label: "Developing current leads" },
+                { cat: "Business Development", label: "Presenting Capabilities" },
+                { cat: "Business Development", label: "PowerPoint presentation" },
+                { cat: "Business Development", label: "Writing proposals" },
+                { cat: "Business Development", label: "Responding to RFPs" },
+                { cat: "Business Development", label: "Admin/logistics" },
+                { cat: "Business Development", label: "Facilitating meetings" },
+                { cat: "Business Development", label: "Facilitating sessions" },
+                { cat: "Enabling Area", label: "Business development support" },
+                { cat: "Graphic Design", label: "Storyboarding simulations" },
+                { cat: "Graphic Design", label: "HTML/CSS" },
+                { cat: "Graphic Design", label: "Data visualization" },
+                { cat: "Graphic Design", label: "Storyboarding videos" },
+                { cat: "Graphic Design", label: "Motion graphic build" },
+                { cat: "Graphic Design", label: "Brand/Logo design" },
+                { cat: "Graphic Design", label: "Printed material design" },
+                { cat: "Graphic Design", label: "User interface design" },
+                { cat: "Graphic Design", label: "Photoshop" },
+                { cat: "Graphic Design", label: "Illustrator" },
+                { cat: "Graphic Design", label: "InDesign" },
+                { cat: "Instructional Design", label: "Creative Writing" },
+                { cat: "Instructional Design", label: "Camtasia" },
+                { cat: "Instructional Design", label: "Project managing" },
+                { cat: "Instructional Design", label: "Reviewing/editing" },
+                { cat: "Instructional Design", label: "Storyboarding" },
+                { cat: "Instructional Design", label: "User testing" },
+                { cat: "Instructional Design", label: "Technical Writing" },
+                { cat: "Instructional Design", label: "Problem Solving" },
+                { cat: "Instructional Design", label: "Innovating" },
+                { cat: "Instructional Design", label: "Facilitating" },
+                { cat: "Instructional Design", label: "Researching" },
+                { cat: "Instructional Design", label: "Wireframing" },
+                { cat: "Instructional Design", label: "Captivate" },
+                { cat: "Instructional Design", label: "Lectora" },
+                { cat: "Leadership & Development", label: "Mentoring others" },
+                { cat: "Leadership & Development", label: "Managing employees" },
+                { cat: "Leadership & Development", label: "Managing teams" },
+                { cat: "Leadership & Development", label: "Coaching" },
+                { cat: "Project Management", label: "Financial analysis" },
+                { cat: "Project Management", label: "Budget creation" },
+                { cat: "Project Management", label: "Writing user stories" },
+                { cat: "Project Management", label: "Evaluating stories" },
+                { cat: "Project Management", label: "Reviewing/editing" },
+                { cat: "Project Management", label: "Client communication (written)" },
+                { cat: "Project Management", label: "Client communication (verbal)" },
+                { cat: "Project Management", label: "Admin/logistics" },
+                { cat: "Project Management", label: "Problem solving" },
+                { cat: "Quality Assurance", label: "Editorial QA" },
+                { cat: "Quality Assurance", label: "Data QA" },
+                { cat: "Quality Assurance", label: "Technical QA" },
+                { cat: "Quality Assurance", label: "Process QA" },
+                { cat: "Quality Assurance", label: "Functional QA" },
+                { cat: "Quality Assurance", label: "User Testing" },
+                { cat: "Quality Assurance", label: "Acceptance Criteria Reivew" },
+                { cat: "Quality Assurance", label: "Technical analysis" },
+                { cat: "Quality Assurance", label: "Process analysis" },
+                { cat: "Quality Assurance", label: "Financial QA" },
+                { cat: "Software Development", label: "Java" },
+                { cat: "Software Development", label: "Javascript" },
+                { cat: "Software Development", label: "HTML" },
+                { cat: "Software Development", label: "NET" },
+                { cat: "Software Development", label: "C#" },
+                { cat: "Software Development", label: "SQL" },
+                { cat: "Software Development", label: "C++" },
+                { cat: "Software Development", label: "React" },
+                { cat: "Enabling Area", label: "JIRA Administration" },
+                { cat: "Enabling Area", label: "Accounts Payable" },
+                { cat: "Enabling Area", label: "Accounts Receivable" },
+                { cat: "Enabling Area", label: "Account Reconcilitation" },
+                { cat: "Enabling Area", label: "Project Setup" },
+                { cat: "Enabling Area", label: "Project Close-out" },
+                { cat: "Instructional Design", label: "Interviewing" },
+                { cat: "Instructional Design", label: "scoring models" },
+                { cat: "Instructional design", label: "Creating Facilitator Materials" },
+                { cat: "Instructional design", label: "writing assessment questions" },
+                { cat: "Instructional Design", label: "working with SMEs" },
+                { cat: "Data Science", label: "Tableau" },
+                { cat: "Data Science", label: "Alteryx" },
+                { cat: "Data Science", label: "Server Knowledge" },
             ],
             certified: false,
             certText: '',
             yoe: 1
         }
+        this.state.filteredSkills = this.state.skillsAuto.slice(0);
 
         if(this.state.addItem.rank !== undefined) { //is edit so fill out items
             let state = this.state;
@@ -145,7 +150,18 @@ export default class AddItem extends Component {
         }
     }
     selectCat(e) {
-        this.setState({ selectedCategory: e.target.selectedIndex });
+        let cat = this.state.categories[e.target.selectedIndex];
+        let filteredSkills = [];
+        if(cat.title) {
+            this.state.skillsAuto.map(s => {
+                if(s.cat === cat.title) {
+                    filteredSkills.push(s);
+                }
+            })
+        } else {
+            filteredSkills = this.state.skillsAuto.slice(0);
+        }
+        this.setState({ selectedCategory: e.target.selectedIndex, filteredSkills });
     }
     selectPriority(e) {
         this.setState({ selectedPriority: e.target.selectedIndex });
@@ -212,7 +228,7 @@ export default class AddItem extends Component {
                                         <label htmlFor="I_DSelect">Skill</label>
                                         <Autocomplete 
                                             getItemValue={(item) => item.label}
-                                            items={state.skillsAuto}
+                                            items={state.filteredSkills}
                                             value={state.skill}
                                             shouldItemRender={matchStateToTerm}
                                             onChange={this.changeText.bind(this, 'skill')}
@@ -220,7 +236,7 @@ export default class AddItem extends Component {
                                             wrapperProps={{ style: { display: 'block' } }}
                                             inputProps={{ className: "form-control", id: "I_DSelect" }}
                                             renderItem={(item, isHighlighted) => 
-                                                <div key={item.label} style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                                                <div key={item.cat + '_' + item.label} style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
                                                     {item.label}
                                                 </div>
                                             }

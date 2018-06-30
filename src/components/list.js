@@ -8,7 +8,7 @@ class ListItem extends Component {
         
         return (
             <div onClick={addPoint.bind(null, this.props.data)} className={"list-group-item skillItem " + (isMoving ? 'isMoving' : '')}>
-                {'Skill ' + (rank + 1) + ': ' + category.title}
+                {'Skill ' + (rank + 1) + ': ' + skill}
 
                 <button className="btn btn-danger btn-sm pull-right" onClick={deletePoint.bind(null, rank)}>
                     <i className="fa fa-trash" />
